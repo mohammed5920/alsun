@@ -23,7 +23,9 @@ Project Alsun provides a platform for administrators and teachers to create stru
 -  **Users:** Can sign up, browse, and purchase variants to gain access to specific content.
 
 **Dynamic Content Access:** Content visibility is tied to the purchased variant, ensuring users only see what they paid for.
+
 **User Management:** Sign-up and authentication flow for students, multi-role access control for staff.
+
 **File Uploads:** Integrated with **UploadThing** for file management.
 
 ##  Tech Stack
