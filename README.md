@@ -5,6 +5,7 @@
 Project Alsun provides a platform for administrators and teachers to create structured educational content (Courses → Modules → Variants) and for users to purchase access to the specific material they need. Originally designed for language content, it features a flexible tagging and variant system that can adapt to any form and category of content.
 
 [Demo](https://project-alsun.netlify.app/)
+(You can sign in with `student/teacher/admin/owner@example.com` - `p@sswordP1`)
 
 ![Demo](readme/hero.jpg "Preview")
 ![Demo](readme/course_browser.jpg "Preview")
