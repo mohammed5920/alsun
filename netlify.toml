@@ -1,0 +1,2 @@
+[build]
+  command = "pnpm install && pnpm prisma generate && pnpm run build"
