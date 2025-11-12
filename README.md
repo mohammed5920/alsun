@@ -29,6 +29,8 @@ Project Alsun provides a platform for administrators and teachers to create stru
 
 **File Uploads:** Integrated with **UploadThing** for file management.
 
+**Cached By Default:** Integrates Next.js caching paradigms to statically generate all public-facing course content at build time, allowing for the majority of pages to be served quickly from CDNs without cold starts. Data is invalidated when edited to always keep the course data fresh.
+
 ##  Tech Stack
 
 This project is built with a modern, type-safe, and scalable technology stack:
