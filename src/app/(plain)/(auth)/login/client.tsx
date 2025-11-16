@@ -4,15 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function LoginPage({ redirectTo }: { redirectTo: string }) {
+export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const redirectTo = useSearchParams().get("redirect") || "/learn";
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +29,7 @@ export default function LoginPage({ redirectTo }: { redirectTo: string }) {
           setIsLoading(true);
         },
         onSuccess: () => {
-          router.push(redirectTo ? redirectTo : "/learn");
+          router.push(redirectTo);
         },
         onError: (ctx) => {
           toast.error(ctx.error.message);
@@ -68,7 +69,7 @@ export default function LoginPage({ redirectTo }: { redirectTo: string }) {
               Password
             </label>
             <Link
-              href="#"
+              href="/contact" //since there is no email server set up yet
               className="text-muted-foreground ml-auto text-sm underline-offset-4 hover:underline"
             >
               Forgot your password?

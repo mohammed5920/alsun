@@ -2,7 +2,7 @@
 
 import { CourseHero } from "@/components/alsun/marketing/courseHero";
 import { ModuleVariantTypeBadge } from "@/components/alsun/marketing/moduleVariantTypeBadge";
-import { WithActionOnClick } from "@/components/alsun/withAction";
+import { WithActionOnSubmit } from "@/components/alsun/withAction";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -36,42 +36,42 @@ export default function ModuleEditor({ initialModule }: { initialModule: Editabl
   return (
     <div className="animate-in fade-in transform-gpu duration-500">
       <CourseHero course={module.course} />
-      <div className="animate-in fade-in container mx-auto my-4 transform-gpu space-y-4 duration-200">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <div className="col-span-1 lg:col-span-3">
-            <div className="mb-2 flex flex-col items-center justify-between gap-2 md:flex-row">
-              <div className="flex items-center gap-4">
-                <Book className="text-secondary size-8" />
-                <div>
-                  <p className="text-secondary/50 text-sm">Editing Module</p>
-                  <h2 className="font-alsun-serif text-secondary text-3xl">
-                    {module.title || "Untitled Module"}
-                  </h2>
+      <WithActionOnSubmit
+        beforeAction={() => {
+          const parsed = ModuleUpdateSchema.safeParse(module);
+          if (!parsed.success) toast.error(parsed.error.issues[0].message);
+          return parsed.success;
+        }}
+        action={() => updateModule(module)}
+        onSuccess={() => toast.success(`Module updated successfully.`)}
+        dontSubmitOnEnter
+      >
+        <div className="animate-in fade-in mx-auto my-4 transform-gpu space-y-4 duration-200 px-4 md:px-16">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+            <div className="col-span-1 lg:col-span-3">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-4">
+                  <Book className="text-secondary size-8" />
+                  <div>
+                    <p className="text-secondary/50 text-sm">Editing Module</p>
+                    <h2 className="font-alsun-serif text-secondary text-3xl">
+                      {module.title || "Untitled Module"}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-
-              <WithActionOnClick
-                beforeAction={() => {
-                  const parsed = ModuleUpdateSchema.safeParse(module);
-                  if (!parsed.success) toast.error(parsed.error.issues[0].message);
-                  return parsed.success;
-                }}
-                action={() => updateModule(module)}
-                onSuccess={() => toast.success(`Module updated successfully.`)}
-              >
-                <Button className="bg-primary hover:bg-teal-700">
+                <Button type="submit" className="bg-primary hover:bg-teal-700">
                   <SaveIcon />
                   Save Changes
                 </Button>
-              </WithActionOnClick>
+              </div>
+              <ModuleContentCard module={module} setModule={setModule} />
             </div>
-            <ModuleContentCard module={module} setModule={setModule} />
-          </div>
-          <div className="col-span-1 lg:col-span-2">
-            <ModuleDescriptionCard module={module} setModule={setModule} />
+            <div className="col-span-1 lg:col-span-2">
+              <ModuleDescriptionCard module={module} setModule={setModule} />
+            </div>
           </div>
         </div>
-      </div>
+      </WithActionOnSubmit>
     </div>
   );
 }
@@ -97,9 +97,10 @@ function ModuleDescriptionCard({
           id="description"
           value={module.description}
           placeholder="Enter description..."
+          required
           rows={8}
           onChange={(e) => setModule((prev) => ({ ...prev, description: e.target.value }))}
-          className="block w-full rounded-md border border-slate-300 p-2"
+          className="block w-full rounded-md border border-slate-300 p-2 "
         />
       </CardContent>
     </Card>
@@ -149,13 +150,28 @@ function ModuleContentCard({
         ))}
 
         <div className="flex flex-col flex-wrap gap-2 border-t pt-4 sm:flex-row">
-          <Button variant="outline" className="grow" onClick={() => addContentItem("WHATSAPP")}>
+          <Button
+            type="button"
+            variant="outline"
+            className="grow"
+            onClick={() => addContentItem("WHATSAPP")}
+          >
             <PlusCircle className="mr-2 h-4 w-4" /> Add Whatsapp Group
           </Button>
-          <Button variant="outline" className="grow" onClick={() => addContentItem("FILE")}>
+          <Button
+            type="button"
+            variant="outline"
+            className="grow"
+            onClick={() => addContentItem("FILE")}
+          >
             <PlusCircle className="mr-2 h-4 w-4" /> Add File (PDF, etc.)
           </Button>
-          <Button variant="outline" className="grow" onClick={() => addContentItem("LINK")}>
+          <Button
+            type="button"
+            variant="outline"
+            className="grow"
+            onClick={() => addContentItem("LINK")}
+          >
             <PlusCircle className="mr-2 h-4 w-4" /> Add External Link
           </Button>
         </div>
@@ -230,10 +246,12 @@ function ContentItem({
         <Input
           placeholder="Enter title for this resource..."
           value={item.title}
+          required
           onChange={(e) => handleItemChange("title", e.target.value)}
-          className="text-secondary placeholder:text-secondary/40 border-slate-300 text-base font-medium"
+          className="text-secondary  border-slate-300 text-base font-medium"
         />
         <Button
+          type="submit"
           variant="outline"
           size="icon"
           className="border border-red-600 text-red-600 transition-colors hover:bg-red-600 hover:text-white"
@@ -279,8 +297,9 @@ function ContentItem({
           <Input
             placeholder="https://example.com/resource"
             value={item.url}
+            required
             onChange={(e) => handleItemChange("url", e.target.value)}
-            className="text-secondary placeholder:text-secondary/40 border-slate-300"
+            className="text-secondary  border-slate-300"
           />
         </div>
       )}
@@ -291,8 +310,9 @@ function ContentItem({
           <Input
             placeholder="Enter WhatsApp Group link or phone number..."
             value={item.url}
+            required
             onChange={(e) => handleItemChange("url", e.target.value)}
-            className="text-secondary placeholder:text-secondary/40 border-slate-300"
+            className="text-secondary  border-slate-300"
           />
         </div>
       )}

@@ -28,7 +28,7 @@ export function TagToggler({
   const groupedTags = groupTags(allTags);
 
   return (
-    <div className="overflow-clip rounded-xl border border-slate-300 bg-white">
+    <div className="overflow-clip rounded-xl bg-white">
       <div className="flex items-center justify-between p-3 border-b border-slate-200">
         <div className="items-baseline flex gap-2">
           <h3 className="font-semibold text-slate-800">Manage Tags</h3>

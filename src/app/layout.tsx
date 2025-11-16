@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">
       <body className="font-alsun-sans relative min-h-screen bg-slate-100 text-secondary">
-        <div className="bg-secondary absolute inset-0 -z-10 size-full mask-[url()] opacity-7" />
+        <div className="bg-secondary absolute inset-0 -z-10 size-full mask-[url(https://m6nqhl3udl.ufs.sh/f/bemDMs9Bqza2dCMVhXIQiv4Ho2zOKhY7LtSCkgBanMNcl6AF)] opacity-7" />
         <DialogProvider>{children}</DialogProvider>
         <noscript className="">
           <div className="absolute inset-0">

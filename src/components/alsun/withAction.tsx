@@ -66,6 +66,7 @@ export function WithActionOnSubmit<T>({
   confirmationOptions,
   onSuccess,
   onFail,
+  dontSubmitOnEnter,
 }: {
   beforeAction?: (formData: FormData) => boolean;
   action: (formData: FormData) => Promise<Result<T>>;
@@ -73,6 +74,7 @@ export function WithActionOnSubmit<T>({
   confirmationOptions?: ConfirmDialogOptions;
   onSuccess?: (t: T) => void;
   onFail?: (e: string) => void;
+  dontSubmitOnEnter?: boolean;
 }) {
   const { confirm } = useConfirmationDialog();
   const router = useRouter();
@@ -88,6 +90,9 @@ export function WithActionOnSubmit<T>({
         "transition-opacity" +
         (isLoading ? " opacity-50 cursor-not-allowed pointer-events-none" : "")
       }
+      onKeyDown={(e) => {
+        if (dontSubmitOnEnter && e.key === "Enter") e.preventDefault();
+      }}
       onSubmit={async (e) => {
         e.preventDefault();
         if (isLoading) return;

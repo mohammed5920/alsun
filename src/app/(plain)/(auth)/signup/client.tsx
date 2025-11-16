@@ -4,17 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 
-export default function SignUp({ redirectTo }: { redirectTo: string }) {
+export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const redirectTo = useSearchParams().get("redirect") || "/courses";
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -31,7 +32,7 @@ export default function SignUp({ redirectTo }: { redirectTo: string }) {
           setIsLoading(true);
         },
         onSuccess: () => {
-          router.push(redirectTo || "/courses");
+          router.push(redirectTo);
         },
         onError: (ctx) => {
           toast.error(ctx.error.message);

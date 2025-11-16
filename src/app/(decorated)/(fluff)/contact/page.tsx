@@ -20,8 +20,8 @@ export default function ContactPage() {
 
         <div className="text-center">
           <h2 className="text-primary font-alsun-serif mb-1 font-semibold">Email</h2>
-          <a href="mailto:info@example.com" className="hover:underline">
-            info@example.com
+          <a href="mailto:alalsonacademy2@gmail.com" className="hover:underline">
+            alalsonacademy2@gmail.com
           </a>
         </div>
 

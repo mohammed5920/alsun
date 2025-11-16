@@ -36,7 +36,7 @@ export async function enrollUser(data: z.infer<typeof EnrollUserSchema>): Promis
   if (!mod) return { ok: false, error: "Module/type not found" };
   if (mod.enrollments.length > 0) return { ok: false, error: "Already enrolled" };
 
-  //enrollment stub for now until website gets verified by Paytabs for the integration
+  //enroll for free for the demo until paytabs verifies the website
 
   await prisma.enrollment.create({
     data: {

@@ -1,7 +1,8 @@
 "use client";
 
 import { FileText, Shield, UserIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const navigationTabs = [
@@ -24,7 +25,6 @@ const navigationTabs = [
 
 export default function SettingsLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <div className="animate-in fade-in mt-20 transform-gpu duration-500">
@@ -42,18 +42,18 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
           <aside className="lg:col-span-1">
             <nav className="space-y-2">
               {navigationTabs.map((tab) => (
-                <button
-                  key={tab.url}
-                  onClick={() => router.push(tab.url)}
-                  className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-semibold transition-colors duration-200 ${
-                    pathname === tab.url
-                      ? "text-primary bg-teal-50 shadow-sm"
-                      : "hover:text-secondary text-slate-600 hover:bg-slate-100"
-                  }`}
-                >
-                  {tab.icon}
-                  {tab.label}
-                </button>
+                <Link key={tab.url} href={tab.url}>
+                  <button
+                    className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-semibold transition-colors duration-200 ${
+                      pathname === tab.url
+                        ? "text-primary bg-teal-50 shadow-sm"
+                        : "hover:text-secondary text-slate-600 hover:bg-slate-100"
+                    }`}
+                  >
+                    {tab.icon}
+                    {tab.label}
+                  </button>
+                </Link>
               ))}
             </nav>
           </aside>

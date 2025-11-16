@@ -4,7 +4,7 @@
 import { CourseHero } from "@/components/alsun/marketing/courseHero";
 import { ModuleVariantTypeBadge } from "@/components/alsun/marketing/moduleVariantTypeBadge";
 import { TagToggler } from "@/components/alsun/staff/tagToggler";
-import { WithActionOnClick } from "@/components/alsun/withAction";
+import { WithActionOnSubmit } from "@/components/alsun/withAction";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -89,68 +89,84 @@ export default function CourseEditor({
   return (
     <div className="animate-in fade-in transform-gpu duration-500">
       <CourseHero course={course} />
-      <div className="container mx-auto my-4 grid grid-cols-1 gap-3 lg:grid-cols-5 px-4">
-        <div className="col-span-1 lg:col-span-2">
-          <MetadataCard allTags={allTags} course={course} setCourse={setCourse} />
+      <div className="mx-auto my-4 grid grid-cols-1 gap-3 lg:grid-cols-5 px-4 md:px-16">
+        <div className="col-span-1 lg:col-span-2 space-y-4">
+          <MetadataCard course={course} setCourse={setCourse} />
+          <div className="p-2 bg-white shadow-md rounded-lg">
+            <TagToggler
+              initialTags={allTags}
+              selectedTags={course.tags}
+              setSelectedTags={(selection) => setCourse((prev) => ({ ...prev, tags: selection }))}
+              categories={Object.values(CourseTagType)}
+            />
+          </div>
         </div>
-        <div className="col-span-1 space-y-4 lg:col-span-3">
-          <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
-            <div className="flex items-center gap-4">
-              <h2 className="font-alsun-serif text-secondary text-3xl">
-                {course.title || "Untitled Course"}
-              </h2>
-              {course.isPublic ? (
-                <div className="text-primary bg-primary/20 flex items-center gap-2 rounded-full px-3 py-1 text-sm">
-                  <CheckCircle size={16} /> Public
-                </div>
-              ) : (
-                <div className="text-secondary bg-secondary/20 flex items-center gap-2 rounded-full px-3 py-1 text-sm">
-                  <Edit size={16} /> Private
-                </div>
-              )}
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                className={`${
-                  course.isPublic
-                    ? "bg-secondary hover:bg-slate-900"
-                    : "bg-primary hover:bg-teal-800"
-                }`}
-                onClick={() => setCourse((prev) => ({ ...prev, isPublic: !prev.isPublic }))}
-              >
-                {course.isPublic ? "Make Private" : "Make Public"}
-              </Button>
 
-              <WithActionOnClick
-                beforeAction={() => {
-                  const parsed = CourseUpdateSchema.safeParse(course);
-                  if (!parsed.success) toast.error(parsed.error.issues[0].message);
-                  return parsed.success;
-                }}
-                action={() => updateCourse(course)}
-                onSuccess={() => toast.success(`Course updated successfully.`)}
+        <div className="col-span-1 lg:col-span-3">
+          <WithActionOnSubmit
+            beforeAction={() => {
+              const parsed = CourseUpdateSchema.safeParse(course);
+              if (!parsed.success) toast.error(parsed.error.issues[0].message);
+              return parsed.success;
+            }}
+            action={() => updateCourse(course)}
+            onSuccess={() => toast.success(`Course updated successfully.`)}
+            dontSubmitOnEnter
+          >
+            <div className="space-y-4">
+              <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
+                <div className="flex items-center gap-4">
+                  <h2 className="font-alsun-serif text-secondary text-3xl">
+                    {course.title || "Untitled Course"}
+                  </h2>
+                  {course.isPublic ? (
+                    <div className="text-primary bg-primary/20 flex items-center gap-2 rounded-full px-3 py-1 text-sm">
+                      <CheckCircle size={16} /> Public
+                    </div>
+                  ) : (
+                    <div className="text-secondary bg-secondary/20 flex items-center gap-2 rounded-full px-3 py-1 text-sm">
+                      <Edit size={16} /> Private
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    className={`${
+                      course.isPublic
+                        ? "bg-secondary hover:bg-slate-900"
+                        : "bg-primary hover:bg-teal-800"
+                    }`}
+                    onClick={() => setCourse((prev) => ({ ...prev, isPublic: !prev.isPublic }))}
+                  >
+                    {course.isPublic ? "Make Private" : "Make Public"}
+                  </Button>
+                  <Button type="submit" className="bg-primary hover:bg-teal-700">
+                    <SaveIcon />
+                    Save Changes
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                {course.modules.map((module) => (
+                  <ModuleCard
+                    key={module.moduleId}
+                    module={module}
+                    setCourse={setCourse}
+                    allTeachers={allTeachers}
+                  />
+                ))}
+              </div>
+              <Button
+                className="bg-primary w-full hover:bg-teal-700"
+                type="button"
+                onClick={addModule}
               >
-                <Button className="bg-primary hover:bg-teal-700">
-                  <SaveIcon />
-                  Save Changes
-                </Button>
-              </WithActionOnClick>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                Add Module
+              </Button>
             </div>
-          </div>
-          <div className="space-y-4">
-            {course.modules.map((module) => (
-              <ModuleCard
-                key={module.moduleId}
-                module={module}
-                setCourse={setCourse}
-                allTeachers={allTeachers}
-              />
-            ))}
-          </div>
-          <Button className="bg-primary w-full hover:bg-teal-700" onClick={addModule}>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Add Module
-          </Button>
+          </WithActionOnSubmit>
         </div>
       </div>
     </div>
@@ -160,11 +176,9 @@ export default function CourseEditor({
 function MetadataCard({
   course,
   setCourse,
-  allTags,
 }: {
   course: EditableCourse;
   setCourse: Dispatch<SetStateAction<EditableCourse>>;
-  allTags: CourseTag[];
 }) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -196,7 +210,7 @@ function MetadataCard({
                 value={course.title}
                 onChange={handleInputChange}
                 required={true}
-                className="border-slate-300"
+                className="border-slate-300 not-focus:placeholder:text-red-600 not-focus:placeholder-shown:border-red-600 transition-colors"
               />
             </div>
           </div>
@@ -213,7 +227,7 @@ function MetadataCard({
                 required={true}
                 rows={3}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border border-slate-300 p-2 required:placeholder-shown:border-red-600 required:placeholder-shown:text-red-600"
+                className="block w-full rounded-md border border-slate-300 p-2 not-focus:placeholder:text-red-600 not-focus:placeholder-shown:border-red-600 transition-colors"
               />
             </div>
             <div>
@@ -247,14 +261,6 @@ function MetadataCard({
                 />
               </div>
             </div>
-          </div>
-          <div className="mt-4">
-            <TagToggler
-              initialTags={allTags}
-              selectedTags={course.tags}
-              setSelectedTags={(selection) => setCourse((prev) => ({ ...prev, tags: selection }))}
-              categories={Object.values(CourseTagType)}
-            />
           </div>
         </CardContent>
       </Card>
@@ -410,7 +416,7 @@ function ModuleCard({
         placeholder="Enter module description..."
         required={true}
         onChange={(e) => handleModuleFieldChange("description", e.target.value)}
-        className="w-full rounded-lg border p-2 text-secondary placeholder:text-secondary/40 placeholder-shown:placeholder:text-red-600 placeholder-shown:border-red-600 focus:border-primary focus:ring-primary border-slate-300"
+        className="w-full rounded-lg border p-2 text-secondary placeholder:text-secondary/40 focus:ring-primary border-slate-300"
       />
 
       <div

@@ -108,9 +108,9 @@ function Hero() {
 
 function AboutUs() {
   const stats = [
-    { value: "1000+", label: "Students Enrolled" },
-    { value: "15+", label: "Years of Experience" },
-    { value: "10+", label: "Partner Institutions" },
+    { value: "600+", label: "Students Enrolled" },
+    { value: "4+", label: "Years of Experience" },
+    { value: "5+", label: "Partner Institutions" },
     { value: "98%", label: "Student Satisfaction" },
   ];
 
@@ -125,7 +125,7 @@ function AboutUs() {
         <h2 className="font-alsun-serif mb-4 text-5xl font-bold">
           About <span className="text-primary">Us</span>
         </h2>
-        <p className="mx-auto mb-12 max-w-3xl text-justify text-lg text-slate-300">
+        <p className="mx-auto mb-12 max-w-3xl text-balance text-lg text-slate-300">
           We are a hybrid language learning hub, combining the warmth of in-person classes with the
           flexibility of online learning. Our brick-and-mortar center is a community space where
           cultures meet, languages flourish, and lifelong friendships are made.
@@ -273,9 +273,7 @@ function HybridExplainer() {
 }
 
 function UpcomingEvents() {
-  //these are placeholder events
-  //i intended to add a real event editing and scheduling system
-  //but it wasn't considered a priority by the client
+  //placeholder events until the event system has been added
   const events = [
     {
       title: "Open House: Meet the Teachers",

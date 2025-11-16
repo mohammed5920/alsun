@@ -80,7 +80,7 @@ export default async function CourseStorePage({
             <h2 className="font-alsun-serif mt-4 text-2xl font-bold text-balance md:text-4xl lg:text-5xl">
               Pioneering Education for a New Era.
             </h2>
-            <p className="text-secondary/80 mt-6 md:text-lg text-justify px-4">
+            <p className="text-secondary/80 mt-6 md:text-lg text-balance px-4">
               We believe mastery comes from deep understanding, not just memorization. Our
               curriculum is meticulously designed by industry veterans to provide practical,
               real-world skills that empower you to not just succeed, but to lead. We are more than
@@ -106,13 +106,15 @@ export default async function CourseStorePage({
 
       <section className="bg-secondary to-secondary relative w-full py-16 text-center">
         <div className="to-primary absolute h-[60%] w-full bg-linear-to-r from-orange-800 opacity-20 mix-blend-lighten blur-2xl"></div>
-        <h2 className="font-alsun-serif mx-auto max-w-3xl text-4xl font-extrabold tracking-tighter text-white md:text-5xl">
-          Ready to Begin Your Transformation?
-        </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-white/70">
-          Invest in your future today. Enroll in a module and take the first step towards unlocking
-          your full potential.
-        </p>
+        <div className="px-8">
+          <h2 className="font-alsun-serif mx-auto max-w-3xl text-4xl font-extrabold tracking-tighter text-white md:text-5xl">
+            Ready to Begin Your Transformation?
+          </h2>
+          <p className="mx-auto mt-6 text-balance max-w-2xl text-lg text-white/70">
+            Invest in your future today. Enroll in a module and take the first step towards
+            unlocking your full potential.
+          </p>
+        </div>
         <Link href="#modules">
           <button className="bg-secondary hover:bg-primary hover:shadow-primary/40 relative mx-auto mt-8 rounded-full px-8 py-4 text-lg font-light text-white transition-all duration-300 hover:font-semibold hover:tracking-wide hover:shadow-2xl">
             <span className="flex items-center">
