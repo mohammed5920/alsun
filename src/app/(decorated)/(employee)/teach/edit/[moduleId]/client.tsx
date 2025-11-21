@@ -6,6 +6,7 @@ import { WithActionOnSubmit } from "@/components/alsun/withAction";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { updateModule } from "@/lib/actions/module";
 import { ModuleUpdateSchema } from "@/lib/types/module";
 import { Strip } from "@/lib/types/util";
@@ -46,7 +47,7 @@ export default function ModuleEditor({ initialModule }: { initialModule: Editabl
         onSuccess={() => toast.success(`Module updated successfully.`)}
         dontSubmitOnEnter
       >
-        <div className="animate-in fade-in mx-auto my-4 transform-gpu space-y-4 duration-200 px-4 md:px-16">
+        <div className="animate-in fade-in mx-auto my-4 transform-gpu space-y-4 duration-200 px-4 md:px-16 max-w-7xl">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
             <div className="col-span-1 lg:col-span-3">
               <div className="mb-2 flex items-center justify-between gap-2">
@@ -93,7 +94,7 @@ function ModuleDescriptionCard({
         <label htmlFor="description" className="text-secondary mt-3 block text-sm">
           Description
         </label>
-        <textarea
+        <Textarea
           id="description"
           value={module.description}
           placeholder="Enter description..."

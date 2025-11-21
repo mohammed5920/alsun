@@ -53,7 +53,7 @@ export async function updateModule(
 export async function removeTeacherFromModule(
   data: z.infer<typeof removeTeacherSchema>
 ): Promise<Result<true>> {
-  const user = readPrivilegedUser(3);
+  const user = await readPrivilegedUser(3);
   if (!user) return { ok: false, error: "Not authorised" };
   const parsed = removeTeacherSchema.safeParse(data);
   if (!parsed.success) return { ok: false, error: "Bad data shape" };

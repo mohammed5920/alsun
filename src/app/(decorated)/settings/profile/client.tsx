@@ -2,6 +2,9 @@
 "use client";
 
 import { WithActionOnSubmit } from "@/components/alsun/withAction";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { updateUser } from "@/lib/actions/user";
 import { authClient } from "@/lib/auth-client";
 import { UpdateUserSchema } from "@/lib/types/user";
@@ -68,19 +71,20 @@ export default function ProfileSettings({ initialUser }: { initialUser: User }) 
                 onClientUploadComplete={handleThumbnailUpload}
                 appearance={{ allowedContent: "hidden" }}
               />
-              <button
+              <Button
                 onClick={() => setData((prev) => ({ ...prev, image: null }))}
-                className="rounded-lg border border-red-600 px-2 py-1 text-xs font-semibold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
+                variant="destructive"
+                className="text-xs cursor-pointer hover:bg-red-700"
               >
                 Remove
-              </button>
+              </Button>
             </div>
           </div>
 
           <label htmlFor="email" className="text-secondary text-sm font-semibold">
             Email
           </label>
-          <input
+          <Input
             type="email"
             id="email"
             value={data.email}
@@ -91,7 +95,7 @@ export default function ProfileSettings({ initialUser }: { initialUser: User }) 
             <label htmlFor="name" className="text-secondary text-sm font-semibold">
               Full Name
             </label>
-            <input
+            <Input
               type="text"
               id="name"
               value={data.name}
@@ -103,25 +107,20 @@ export default function ProfileSettings({ initialUser }: { initialUser: User }) 
             <label htmlFor="bio" className="text-secondary text-sm font-semibold">
               Short Bio
             </label>
-            <textarea
+            <Textarea
               id="bio"
               rows={2}
               className="focus:border-primary mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 transition-all focus:ring-0 focus:outline-none"
               value={data.bio || undefined}
               onChange={(e) => setData((prev) => ({ ...prev, bio: e.target.value }))}
-            ></textarea>
+            />
             <p className="mt-2 text-xs text-slate-400">
               Brief description for your profile. URLs are hyperlinked.
             </p>
           </div>
         </div>
         <div className="mt-8 flex justify-end border-t border-slate-200 pt-6">
-          <button
-            type="submit"
-            className="bg-primary rounded-lg px-6 py-2 font-bold text-white shadow-md transition-colors hover:bg-teal-700"
-          >
-            Save Changes
-          </button>
+          <Button type="submit">Save Changes</Button>
         </div>
       </WithActionOnSubmit>
     </div>

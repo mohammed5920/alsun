@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/command";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
 import { updateCourse } from "@/lib/actions/course";
 import { CourseUpdateSchema } from "@/lib/types/course";
 import { Strip } from "@/lib/types/util";
@@ -89,7 +90,7 @@ export default function CourseEditor({
   return (
     <div className="animate-in fade-in transform-gpu duration-500">
       <CourseHero course={course} />
-      <div className="mx-auto my-4 grid grid-cols-1 gap-3 lg:grid-cols-5 px-4 md:px-16">
+      <div className="mx-auto my-4 grid grid-cols-1 gap-3 lg:grid-cols-5 max-w-7xl px-4 md:px-16">
         <div className="col-span-1 lg:col-span-2 space-y-4">
           <MetadataCard course={course} setCourse={setCourse} />
           <div className="p-2 bg-white shadow-md rounded-lg">
@@ -220,7 +221,7 @@ function MetadataCard({
               <label htmlFor="description" className="text-secondary mt-3 block text-sm">
                 Description
               </label>
-              <textarea
+              <Textarea
                 id="description"
                 value={course.description}
                 placeholder="Enter description..."
@@ -411,7 +412,7 @@ function ModuleCard({
         </div>
       </div>
       <label className="text-secondary/40 block">Module Description</label>
-      <textarea
+      <Textarea
         value={module.description}
         placeholder="Enter module description..."
         required={true}
@@ -420,7 +421,7 @@ function ModuleCard({
       />
 
       <div
-        className={`grid grid-cols-2 gap-2 md:grid-cols-4 items-start p-1 rounded-lg transition-colors ${module.variants.length === 0 && "bg-red-600/20"}`}
+        className={`grid grid-cols-2 gap-2 md:grid-cols-4 items-start mt-2 p-1 rounded-lg transition-colors ${module.variants.length === 0 && "bg-red-600/20"}`}
       >
         {Object.values(ModuleVariantType).map((type) => (
           <VariantCardlet
@@ -488,9 +489,9 @@ function VariantCardlet({
         <ModuleVariantTypeBadge type={type} />
       </span>
       {variant && (
-        <div className="flex gap-0.5" onClick={(e) => e.stopPropagation()}>
+        <div className="flex gap-0.5 items-center" onClick={(e) => e.stopPropagation()}>
           <label>EGP</label>
-          <input
+          <Input
             className="px-1 rounded-md w-full bg-white text-secondary"
             type="number"
             value={variant.price.toString()}
@@ -499,7 +500,7 @@ function VariantCardlet({
                 e.target.value === "" || e.target.value === "0" ? 0 : Number(e.target.value);
               if (!Number.isNaN(asNumber)) handlePriceChange(type, asNumber);
             }}
-          ></input>
+          ></Input>
         </div>
       )}
     </div>

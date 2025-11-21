@@ -12,7 +12,7 @@ import { Result } from "../types/util";
  * @returns the created tag object
  */
 export async function createTag(tag: z.infer<typeof TagSchema>): Promise<Result<CourseTag>> {
-  const user = readPrivilegedUser(3);
+  const user = await readPrivilegedUser(3);
   if (!user) return { ok: false, error: "Not authorised" };
   const parsed = TagSchema.safeParse(tag);
   if (!parsed.success) return { ok: false, error: parsed.error.issues[0].message };
@@ -24,7 +24,7 @@ export async function createTag(tag: z.infer<typeof TagSchema>): Promise<Result<
 
 export async function deleteTag(tagId: string): Promise<Result<true>> {
   if (typeof tagId !== "string" || !tagId) return { ok: false, error: "Bad tag ID" };
-  const user = readPrivilegedUser(3);
+  const user = await readPrivilegedUser(3);
   if (!user) return { ok: false, error: "Not authorised" };
   const coursesToRevalidate = await prisma.course
     .findMany({ where: { tags: { some: { tagId: tagId } } }, select: { courseId: true } })

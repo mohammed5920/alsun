@@ -135,7 +135,7 @@ export default async function AdminCourseDashboard({
                             });
                           }}
                         >
-                          <button className="p-1.5 border-secondary/20 rounded-md border transition-all hover:border-red-600 hover:bg-red-600 hover:text-white">
+                          <button className="p-1.5 border-secondary/20 rounded-md border transition-all hover:border-red-600 hover:bg-red-600 hover:text-white cursor-pointer">
                             <X strokeWidth={2} className="size-4" />
                           </button>
                         </WithActionOnClick>
@@ -209,7 +209,7 @@ export default async function AdminCourseDashboard({
                             return deleteUserEnrollment(enrollment.enrollmentId);
                           }}
                         >
-                          <button className="p-1.5 border-secondary/20 rounded-md border transition-all hover:border-red-600 hover:bg-red-600 hover:text-white">
+                          <button className="p-1.5 border-secondary/20 rounded-md border transition-all cursor-pointer hover:border-red-600 hover:bg-red-600 hover:text-white">
                             <Trash strokeWidth={2} className="size-4" />
                           </button>
                         </WithActionOnClick>

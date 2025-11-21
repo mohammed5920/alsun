@@ -2,6 +2,7 @@
 
 import { WithActionOnClick, WithActionOnSubmit } from "@/components/alsun/withAction";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { deleteSelf, updateUserPassword } from "@/lib/actions/user";
 import { authClient } from "@/lib/auth-client";
 import { UpdateUserPasswordSchema } from "@/lib/types/user";
@@ -37,7 +38,7 @@ export default function AccountSecuritySettings() {
       >
         <div className="mt-6 space-y-2">
           <label className="text-secondary text-sm font-semibold">Current Password</label>
-          <input
+          <Input
             value={data.oldPass}
             onChange={(e) => setData((prev) => ({ ...prev, oldPass: e.target.value }))}
             type="password"
@@ -45,7 +46,7 @@ export default function AccountSecuritySettings() {
             className="focus:border-primary block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 transition-all focus:ring-0 focus:outline-none"
           />
           <label className="text-secondary text-sm font-semibold">New Password</label>
-          <input
+          <Input
             value={data.newPass}
             onChange={(e) => setData((prev) => ({ ...prev, newPass: e.target.value }))}
             type="password"
@@ -55,7 +56,7 @@ export default function AccountSecuritySettings() {
           <label htmlFor="confirmPass" className="text-secondary text-sm font-semibold">
             Confirm New Password
           </label>
-          <input
+          <Input
             value={data.confirmPass}
             onChange={(e) => setData((prev) => ({ ...prev, confirmPass: e.target.value }))}
             type="password"
@@ -76,13 +77,10 @@ export default function AccountSecuritySettings() {
               router.push("/");
             }}
           >
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-lg bg-red-600 px-5 py-2 font-bold text-white shadow-md transition-colors hover:bg-red-700"
-            >
+            <Button type="button" variant="destructive" className="hover:bg-red-700 cursor-pointer">
               <Trash2 className="h-4 w-4" />
               <span className="hidden md:inline">Delete Account</span>
-            </button>
+            </Button>
           </WithActionOnClick>
           <Button type="submit">Update Account</Button>
         </div>

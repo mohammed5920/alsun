@@ -90,17 +90,17 @@ export function WithActionOnSubmit<T>({
         "transition-opacity" +
         (isLoading ? " opacity-50 cursor-not-allowed pointer-events-none" : "")
       }
-      onKeyDown={(e) => {
-        if (dontSubmitOnEnter && e.key === "Enter") e.preventDefault();
-      }}
       onSubmit={async (e) => {
         e.preventDefault();
+        const nativeEvent = e.nativeEvent as SubmitEvent;
+        if (nativeEvent.submitter?.id === "swallower") return;
         if (isLoading) return;
         if (confirmationOptions && !(await confirm(confirmationOptions))) return;
         const formData = new FormData(e.currentTarget);
         startAction(formData);
       }}
     >
+      {dontSubmitOnEnter && <button id="swallower" type="submit" className="hidden" />}
       {children}
     </form>
   );

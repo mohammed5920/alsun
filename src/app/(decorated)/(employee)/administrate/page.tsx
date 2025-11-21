@@ -78,10 +78,10 @@ export default async function AdminDashboard() {
                   redirect(`/administrate/courses/${courseId}/edit`);
                 }}
               >
-                <button className="bg-secondary flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-950">
+                <Button variant="secondary" className="text-white">
                   <PlusCircle className="h-4 w-4" />
                   Create New Course
-                </button>
+                </Button>
               </WithActionOnClick>
             </div>
             <div className="flex gap-2 flex-wrap">
@@ -98,7 +98,7 @@ export default async function AdminDashboard() {
                   >
                     <div className="flex items-center justify-center py-2 gap-1">
                       <Link href={`/administrate/courses/${course.courseId}`}>
-                        <button className="border-secondary/20 hover:bg-primary hover:border-primary rounded-md border p-1.5 transition-all hover:text-white">
+                        <button className="border-secondary/20 hover:bg-primary hover:border-primary rounded-md border p-1.5 transition-all hover:text-white cursor-pointer">
                           <Users strokeWidth={2} className="size-4" />
                         </button>
                       </Link>

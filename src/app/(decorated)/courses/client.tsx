@@ -2,6 +2,7 @@
 
 import { CourseTagBadge, CourseTagStyles } from "@/components/alsun/marketing/courseTagBadge";
 import { StoreCourseCard } from "@/components/alsun/marketing/storeCourseCard";
+import { Input } from "@/components/ui/input";
 import { TaggedCourse } from "@/lib/types/course";
 import { groupTags, toggleTag } from "@/lib/types/tags";
 import { ensureArray } from "@/lib/utils";
@@ -74,7 +75,7 @@ function HeroSection({
         Explore courses taught by world-class instructors.
       </p>
       <div className="relative mx-auto max-w-xl">
-        <input
+        <Input
           type="text"
           value={searchQuery}
           onChange={(e) => setFilter((prev) => ({ ...prev, search: e.target.value }))}

@@ -99,12 +99,12 @@ export default async function AdminUserProfilePage({
           <div className="bg-white flex justify-between w-full rounded-2xl shadow-md border border-black/10 p-4 items-center">
             <div className="space-y-1">
               <p className="font-bold">Admin Actions</p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-sm hidden md:block">
                 Perform administrative actions on this user's account.
               </p>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-col md:flex-row">
               <div className="text-center">
                 {/* would love to use the wrapper instead but alas we must do controlled server components */}
                 <label className="text-sm font-medium">Change Role</label>
@@ -117,7 +117,7 @@ export default async function AdminUserProfilePage({
                     revalidatePath(`/administrate/users/${user!.id}`);
                   }}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full md:w-fit">
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
                   <SelectContent>
