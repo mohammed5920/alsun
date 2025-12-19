@@ -3,9 +3,9 @@
 import { CourseTagBadge, CourseTagStyles } from "@/components/alsun/marketing/courseTagBadge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CourseTag, CourseTagType } from "@/generated/prisma/browser";
 import { createTag, deleteTag } from "@/lib/actions/tag";
 import { groupTags, toggleTag } from "@/lib/types/tags";
-import { CourseTag, CourseTagType } from "@prisma/client";
 import { Plus, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";

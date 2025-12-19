@@ -1,9 +1,9 @@
 import { Logo } from "@/components/alsun/logo";
 import { WithActionOnClick } from "@/components/alsun/withAction";
+import { ModuleVariantType } from "@/generated/prisma/browser";
 import { enrollUser } from "@/lib/actions/user";
 import { readUser } from "@/lib/data/user";
 import { prisma } from "@/lib/prisma";
-import { ModuleVariantType } from "@prisma/client";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 

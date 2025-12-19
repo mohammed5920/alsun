@@ -1,5 +1,4 @@
-import type { CourseTag } from "@prisma/client";
-import { CourseTagType } from "@prisma/client";
+import { CourseTag, CourseTagType } from "@/generated/prisma/browser";
 import { Info, Languages, LibraryBig, Puzzle, Sparkles } from "lucide-react";
 
 export const CourseTagStyles = {

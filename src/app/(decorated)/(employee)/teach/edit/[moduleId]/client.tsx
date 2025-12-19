@@ -7,10 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { updateModule } from "@/lib/actions/module";
-import { ModuleUpdateSchema } from "@/lib/types/module";
-import { Strip } from "@/lib/types/util";
-import { UploadDropzone } from "@/lib/uploadthing";
 import {
   Course,
   CourseTag,
@@ -19,7 +15,11 @@ import {
   ModuleContentType,
   ModuleVariant,
   ModuleVariantType,
-} from "@prisma/client";
+} from "@/generated/prisma/browser";
+import { updateModule } from "@/lib/actions/module";
+import { ModuleUpdateSchema } from "@/lib/types/module";
+import { Strip } from "@/lib/types/util";
+import { UploadDropzone } from "@/lib/uploadthing";
 import { produce } from "immer";
 import { Book, FileText, Link, MessageCircle, PlusCircle, SaveIcon, Trash } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";

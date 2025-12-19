@@ -1,6 +1,6 @@
 "use server";
+import { CourseTag } from "@/generated/prisma/browser";
 import { prisma } from "@/lib/prisma";
-import { CourseTag } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 import { readPrivilegedUser } from "../data/user";

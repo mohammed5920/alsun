@@ -1,4 +1,4 @@
-import { Enrollment } from "@prisma/client";
+import { Enrollment } from "@/generated/prisma/browser";
 import { BarChart3 } from "lucide-react";
 
 export default function Stats({ modules }: { modules: { enrollments: Enrollment[] }[] }) {

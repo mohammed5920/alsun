@@ -1,5 +1,5 @@
+import { Course, CourseTag } from "@/generated/prisma/browser";
 import { Strip } from "@/lib/types/util";
-import { Course, CourseTag } from "@prisma/client";
 import Link from "next/link";
 import { CourseTagBadge } from "./courseTagBadge";
 

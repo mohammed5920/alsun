@@ -3,11 +3,11 @@ import { ModuleVariantTypeBadge } from "@/components/alsun/marketing/moduleVaria
 import { DarkSection } from "@/components/alsun/navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Enrollment, Module } from "@/generated/prisma/browser";
 import { readUser } from "@/lib/data/user";
 import { prisma } from "@/lib/prisma";
 import { TaggedCourse } from "@/lib/types/course";
 import { getInitials } from "@/lib/utils";
-import { Enrollment, Module } from "@prisma/client";
 import { ArrowRight, Compass } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";

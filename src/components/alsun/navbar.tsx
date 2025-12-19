@@ -8,10 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { User } from "@/generated/prisma/browser";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { authClient } from "@/lib/auth-client";
 import { getInitials } from "@/lib/utils";
-import { User } from "@prisma/client";
 import clsx from "clsx";
 import { HelpCircle, LogIn, LogOut, Mail, Menu, Settings, Store } from "lucide-react";
 import Link from "next/link";

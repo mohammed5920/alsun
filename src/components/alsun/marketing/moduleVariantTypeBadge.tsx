@@ -1,4 +1,4 @@
-import { ModuleVariantType } from "@prisma/client";
+import { ModuleVariantType } from "@/generated/prisma/browser";
 import { Building, Laptop, User, Users } from "lucide-react";
 
 export const VariantTagStyles = {

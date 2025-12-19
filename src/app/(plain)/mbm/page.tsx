@@ -49,7 +49,7 @@ export default function MBM() {
 
           <div className="flex items-center justify-center space-x-4 pt-2">
             <a
-              href="mailto:n.mohammed5920@gmail.com"
+              href="mailto:mohammednasrelsayed@gmail.com"
               className="font-semibold text-teal-600 underline"
             >
               Email

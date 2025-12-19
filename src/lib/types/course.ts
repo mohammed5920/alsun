@@ -1,4 +1,4 @@
-import { Course, CourseTag, ModuleVariantType } from "@prisma/client";
+import { Course, CourseTag, ModuleVariantType } from "@/generated/prisma/browser";
 import { z } from "zod";
 import { TagSchema } from "./tags";
 

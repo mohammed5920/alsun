@@ -1,4 +1,4 @@
-import { CourseTag, CourseTagType } from "@prisma/client";
+import { CourseTag, CourseTagType } from "@/generated/prisma/browser";
 import z from "zod";
 
 export function toggleTag<T extends { name: string }>(arr: T[], value: T): T[] {

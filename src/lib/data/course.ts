@@ -1,4 +1,4 @@
-import { Course, Prisma } from "@prisma/client";
+import { Course, Prisma } from "@/generated/prisma/browser";
 import "server-only";
 import z from "zod";
 import { CourseUpdateSchema } from "../types/course";

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { CourseTag } from "@prisma/client";
+import { CourseTag } from "@/generated/prisma/browser";
 import Link from "next/link";
 import { DarkSection } from "../navbar";
 import { CourseTagBadge } from "./courseTagBadge";

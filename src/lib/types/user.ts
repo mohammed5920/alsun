@@ -1,4 +1,4 @@
-import { ModuleVariantType } from "@prisma/client";
+import { ModuleVariantType } from "@/generated/prisma/browser";
 import z from "zod";
 
 export const EnrollUserSchema = z.object({

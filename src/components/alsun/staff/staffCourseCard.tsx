@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/browser";
 import { BookOpen, CheckCircle, EditIcon, Users } from "lucide-react";
 import Link from "next/link";
 import React from "react";

@@ -18,19 +18,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
+import { Course, CourseTag, Module, ModuleVariant } from "@/generated/prisma/browser";
+import { CourseTagType, ModuleVariantType } from "@/generated/prisma/enums";
 import { updateCourse } from "@/lib/actions/course";
 import { CourseUpdateSchema } from "@/lib/types/course";
 import { Strip } from "@/lib/types/util";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
-import {
-  Course,
-  CourseTag,
-  CourseTagType,
-  Module,
-  ModuleVariant,
-  ModuleVariantType,
-} from "@prisma/client";
 import { produce } from "immer";
 import {
   ArrowDown,

@@ -3,10 +3,10 @@
 import { CourseTagBadge, CourseTagStyles } from "@/components/alsun/marketing/courseTagBadge";
 import { StoreCourseCard } from "@/components/alsun/marketing/storeCourseCard";
 import { Input } from "@/components/ui/input";
+import { CourseTag, CourseTagType } from "@/generated/prisma/browser";
 import { TaggedCourse } from "@/lib/types/course";
 import { groupTags, toggleTag } from "@/lib/types/tags";
 import { ensureArray } from "@/lib/utils";
-import { CourseTag, CourseTagType } from "@prisma/client";
 import { Compass } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -80,7 +80,7 @@ function HeroSection({
           value={searchQuery}
           onChange={(e) => setFilter((prev) => ({ ...prev, search: e.target.value }))}
           placeholder="Search..."
-          className="w-3/4 rounded-full bg-white/20 py-2 text-center text-lg text-white transition-all duration-300 placeholder:text-white/70 focus:ring-4 focus:ring-white/30 focus:outline-none"
+          className="w-3/4 rounded-full bg-white/20 py-2 text-center text-lg text-white transition-all duration-300 placeholder:text-white/70 focus:outline-none mx-auto border-0"
         />
       </div>
     </div>

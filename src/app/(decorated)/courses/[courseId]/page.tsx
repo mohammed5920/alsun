@@ -1,7 +1,7 @@
 import { CourseHero } from "@/components/alsun/marketing/courseHero";
 import { ModuleVariantTypeBadge } from "@/components/alsun/marketing/moduleVariantTypeBadge";
+import { Module, ModuleVariant } from "@/generated/prisma/browser";
 import { prisma } from "@/lib/prisma";
-import { Module, ModuleVariant } from "@prisma/client";
 import { ArrowRight, BookOpen, Users, Video } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";

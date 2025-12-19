@@ -1,8 +1,8 @@
 import { CourseHero } from "@/components/alsun/marketing/courseHero";
 import { Button } from "@/components/ui/button";
+import { ModuleContent, ModuleContentType } from "@/generated/prisma/browser";
 import { readUser } from "@/lib/data/user";
 import { prisma } from "@/lib/prisma";
-import { ModuleContent, ModuleContentType } from "@prisma/client";
 import { ChevronRight, FileText, Link, MessageCircle, PlayCircle } from "lucide-react";
 import { redirect } from "next/navigation";
 

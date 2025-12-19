@@ -1,4 +1,4 @@
-import { ModuleContentType, ModuleVariantType } from "@prisma/client";
+import { ModuleContentType, ModuleVariantType } from "@/generated/prisma/browser";
 import z from "zod";
 
 export const ModuleContentSchema = z.object({

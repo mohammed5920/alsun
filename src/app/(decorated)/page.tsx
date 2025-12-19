@@ -10,10 +10,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { CourseTagType } from "@/generated/prisma/browser";
 import { readUser } from "@/lib/data/user";
 import { prisma } from "@/lib/prisma";
 import { groupTags } from "@/lib/types/tags";
-import { CourseTagType } from "@prisma/client";
 import { ArrowRight, Laptop, Repeat, School } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
